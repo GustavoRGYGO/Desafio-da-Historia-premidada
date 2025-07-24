@@ -46,7 +46,7 @@ async def get_cliente_endereco(cpf: str = Query(...), nome: str = Query(...), ce
     if t<8:
         for _ in range(8-t):
             strcep='0'+strcep
-
+    #Link da api
     url = f"https://brasilapi.com.br/api/cep/v1/{strcep}"
 
     try:
