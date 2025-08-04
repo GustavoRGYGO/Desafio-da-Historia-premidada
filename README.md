@@ -64,3 +64,41 @@ docker build -t fastapi-cep-app .
 docker run -p 8000:8000 fastapi-cep-app
 ```
 Agora, basta acessar o endereço http://localhost:8000/docs no navegador para testar a api através do swagger ui.
+
+# Como executar a sua aplicação
+## Docker
+O Docker serve para criar um ambiente para nosso aplicativo, com o básico para executá-lo
+
+### Como "buildar" e executar a sua aplicação:
+```
+   docker build -t app/desafio-genuv:1.0 .
+```
+Esse comando vai construir sua imagem baseado no dockerfile na raíz do seu projeto. Utilize a versão de acordo com a tag do código
+
+```
+   docker run -p 8000:8000 [opcional: -e http://ip:porta] --name desafio-genuv app/desafio-genuv:1.0
+```
+Esse comando vai executar sua imagem docker. A inserção do proxy é opcional. Como o projeto utiliza de uma API externa, as vezes é bloqueado pelo proxy.
+
+Agora, basta acessar o endereço http://localhost:8000/docs no navegador para testar a api através do swagger ui.
+ 
+### Local:
+Na raiz do seu projeto, vamos habilitar a permissão de execução do nosso bash
+```
+   chmod +x ./run.sh
+```
+Esse comando habilita a permissão de execução do bash
+
+```  
+  ./run.sh
+```
+Esse comando executa o bash, que executa o projeto. Esse bash é utilizado para executar o aplicativo localmente, caso desejado. Ele irá verificar se, na raiz do projeto, há um *.env* (arquivo de variável de ambiente) e uma pasta *venv* (pasta de ambiente virtual).
+
+Agora, basta acessar o endereço http://localhost:8001/docs no navegador para testar a api através do swagger ui.
+
+**OBSERVAÇÃO:** foi feito uma alteração nas portas de acordo com o tipo de execução: 
+```
+Docker: porta 8000 
+Local: porta 8001
+```
+Isso permite que você rode, tanto localmente, quando conteinerizado, o seu aplicativo.
